@@ -1,5 +1,6 @@
 import {Modal, Form} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
+import PropTypes from 'prop-types';
 
 import {createPost} from "../../actions";
 import PostForm from './postForm';
@@ -38,5 +39,11 @@ function CreatePostModal(props) {
         </Modal>
     );
 }
+
+CreatePostModal.propTypes = {
+    visible: PropTypes.bool.isRequired,
+    onSuccess: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+};
 
 export default CreatePostModal

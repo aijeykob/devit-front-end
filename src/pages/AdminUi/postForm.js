@@ -1,4 +1,6 @@
 import {Form, Input} from 'antd';
+import PropTypes from 'prop-types';
+
 import TextArea from "antd/es/input/TextArea";
 
 function PostForm({form, post, errors}) {
@@ -83,5 +85,11 @@ function PostForm({form, post, errors}) {
         </Form>
     );
 }
+
+PostForm.propTypes = {
+    form: PropTypes.object.isRequired,
+    post: PropTypes.object.isRequired,
+    errors: PropTypes.object,
+};
 
 export default PostForm

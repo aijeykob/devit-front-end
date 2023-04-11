@@ -1,6 +1,7 @@
 import {Modal, Form} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
+import PropTypes from 'prop-types';
 
 import PostForm from './postForm';
 import {getPost, updatePost, editPostClearErrors} from "../../actions";
@@ -67,5 +68,12 @@ function EditPostModal(props) {
         </Modal>
     );
 }
+
+EditPostModal.propTypes = {
+    visible: PropTypes.bool.isRequired,
+    postId: PropTypes.number.isRequired,
+    onSuccess: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+};
 
 export default EditPostModal
