@@ -3,10 +3,12 @@ import {Table, Input, Button, Space, Pagination, Menu, Dropdown, Select} from "a
 import {SearchOutlined, MoreOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from 'react-redux';
 import {debounce} from 'lodash';
+
 import {getPosts, removePost} from "../../actions";
 import {ADMIN_UI_COLUMNS, SEARCH_FIELDS} from './constants'
 import CreatePostModal from './createPostModal'
 import EditPostModal from './editPostModal'
+import {useModal} from "./useModal";
 
 const {Search} = Input;
 const {Option} = Select;
@@ -18,39 +20,15 @@ function AdminUI() {
 
     const [sortOrder, setSortOrder] = useState({});
     const [loading, setLoading] = useState(false);
-    const [modalState, setModalState] = useState({
-        createModalVisible: false,
-        editModalVisible: false,
-        postIdToEdit: null
-    });
+    const [postIdToEdit, setPostIdToEdit] = useState(null);
 
-    const openCreateModal = () => {
-        setModalState({
-            ...modalState,
-            createModalVisible: true
-        });
-    };
+    const { visible: createModalVisible, openModal: openCreateModal, closeModal: closeCreateModal } = useModal();
+    const { visible: editModalVisible, openModal: openEditModal, closeModal: closeEditModal } = useModal();
 
-    const closeCreateModal = () => {
-        setModalState({
-            ...modalState,
-            createModalVisible: false
-        });
-    };
+    const openEditModalWithPostId = (postId) => {
+        setPostIdToEdit(postId);
+        openEditModal()
 
-    const openEditModal = (postId) => {
-        setModalState({
-            ...modalState,
-            editModalVisible: true,
-            postIdToEdit: postId
-        });
-    };
-
-    const closeEditModal = () => {
-        setModalState({
-            ...modalState,
-            editModalVisible: false
-        });
     };
 
     const handleCreatorChange = (value) => {
@@ -138,7 +116,7 @@ function AdminUI() {
 
     const menu = (postId) => (
         <Menu>
-            <Menu.Item key="1" onClick={() => openEditModal(postId)}>Edit</Menu.Item>
+            <Menu.Item key="1" onClick={() => openEditModalWithPostId(postId)}>Edit</Menu.Item>
             <Menu.Item key="2" onClick={() => handleRemove(postId)}>Remove</Menu.Item>
         </Menu>
     );
@@ -244,13 +222,13 @@ function AdminUI() {
                 style={{display: 'flex', justifyContent: 'center', margin: '10px 0'}}
             />
             <CreatePostModal
-                visible={modalState.createModalVisible}
+                visible={createModalVisible}
                 onClose={closeCreateModal}
                 onSuccess={handleCreateOrUpdateSuccess}
             />
             <EditPostModal
-                visible={modalState.editModalVisible}
-                postId={modalState.postIdToEdit}
+                visible={editModalVisible}
+                postId={postIdToEdit}
                 onClose={closeEditModal}
                 onSuccess={handleCreateOrUpdateSuccess}
             />
