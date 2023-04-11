@@ -169,7 +169,6 @@ function AdminUI() {
 
     return (
         <>
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                 <Space style={{margin: 16}} wrap={true}>
                     {SEARCH_FIELDS.map((field) => (
                         <Search
@@ -197,15 +196,17 @@ function AdminUI() {
                             ))}
                         </Select>
                     </div>
+                    <div style={{width: 200}}>
+                    <Button
+                        type="primary"
+                        onClick={openCreateModal}
+                        style={{width: '100%'}}
+                    >
+                        Create Post
+                    </Button>
+                    </div>
                 </Space>
-                <Button
-                    type="primary"
-                    onClick={openCreateModal}
-                    style={{float: 'right'}}
-                >
-                    Create Post
-                </Button>
-            </div>
+            <div style={{ overflowX: 'auto' }}>
             <Table
                 loading={loading}
                 columns={tableColumns}
@@ -213,6 +214,7 @@ function AdminUI() {
                 pagination={false}
                 onChange={handleTableChange}
             />
+            </div>
             <Pagination
                 total={total}
                 pageSize={10}
