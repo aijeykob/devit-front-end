@@ -21,7 +21,7 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const login = async (payload) => {
-    const apiResponse = await axios.post('http://localhost:5000/auth/login', payload);
+    const apiResponse = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, payload);
     localStorage.setItem('tokens', JSON.stringify(apiResponse.data));
     setUser(jwt_decode(apiResponse.data.accessToken));
     navigate('/');

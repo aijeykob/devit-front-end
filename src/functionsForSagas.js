@@ -1,6 +1,6 @@
 import instance from './components/shared/jwtInterceptor';
 
-const apiUrl = 'http://localhost:5000';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const getPosts = (d) => {
   return instance.post(`${apiUrl}/api/posts/get-all`, { ...d.payload });

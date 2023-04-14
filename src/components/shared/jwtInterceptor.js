@@ -27,7 +27,7 @@ jwtInterceoptor.interceptors.response.use(
         refresh_token: authData.refreshToken,
       };
       try {
-        let apiResponse = await axios.post('http://localhost:5000/auth/refreshtoken', payload);
+        let apiResponse = await axios.post(`${process.env.REACT_APP_API_URL}/auth/refreshtoken`, payload);
 
         localStorage.setItem('tokens', JSON.stringify(apiResponse.data));
         error.config.headers['Authorization'] = `bearer ${apiResponse.data.accessToken}`;
