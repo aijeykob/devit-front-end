@@ -1,4 +1,5 @@
-import Card from 'react-bootstrap/Card';
+import React from 'react';
+import { Card } from 'antd';
 
 const Home = () => {
   return (
@@ -7,12 +8,15 @@ const Home = () => {
         className="d-flex justify-content-center align-items-center"
         style={{ minHeight: '500px', minWidth: '600px', padding: '0 10px' }}
       >
-        <Card>
-          <Card.Body>
-            <Card.Text className="text-center">
-              <b>Welcome! Here is a Demo of Admin UI </b>
-            </Card.Text>
-          </Card.Body>
+        <Card
+          bodyStyle={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '100%',
+          }}
+        >
+          <Card.Meta title={<b>Welcome! Here is a Demo of Admin UI</b>} style={{ textAlign: 'center' }} />
         </Card>
       </div>
     </>

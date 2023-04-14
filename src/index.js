@@ -7,7 +7,6 @@ import createSagaMiddleware from 'redux-saga';
 import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import rootSaga from './sagas';
 import reducer from './reducers/index';

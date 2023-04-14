@@ -1,44 +1,56 @@
-import { useContext, useRef } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { useContext } from 'react';
+import { Col, Row, Form, Input, Button } from 'antd';
 import AuthContext from '../components/shared/AuthContext';
 
 const Login = () => {
-  const email = useRef('');
-  const password = useRef('');
   const { login } = useContext(AuthContext);
+  const [form] = Form.useForm();
 
-  const loginSubmit = async () => {
-    let payload = {
-      email: email.current.value,
-      password: password.current.value,
-    };
-    await login(payload);
+  const onFinish = async (values) => {
+    await login(values);
   };
+
   return (
-    <>
-      <Container className="mt-2">
-        <Row>
-          <Col className="col-md-8 offset-md-2">
-            <legend>Login Form</legend>
-            <form>
-              <Form.Group className="mb-3" controlId="formEmail">
-                <Form.Label>User Email</Form.Label>
-                <Form.Control type="email" ref={email} />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" ref={password} />
-              </Form.Group>
-              <Button variant="primary" type="button" onClick={loginSubmit}>
-                Login
-              </Button>
-            </form>
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Row style={{ marginTop: 10 }}>
+      <Col xs={{ span: 24, offset: 0 }} md={{ span: 8, offset: 8 }}>
+        <Form layout="vertical" form={form} onFinish={onFinish} initialValues={{ email: '', password: '' }}>
+          <Form.Item
+            label="User Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your email!',
+              },
+              {
+                type: 'email',
+                message: 'The input is not a valid email!',
+              },
+            ]}
+          >
+            <Input type="email" />
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your password!',
+              },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Login
+            </Button>
+          </Form.Item>
+        </Form>
+      </Col>
+    </Row>
   );
 };
+
 export default Login;

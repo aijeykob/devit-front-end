@@ -27,20 +27,23 @@ const CustomLayout = ({ children }) => {
               <Link to="/admin-ui">Admin UI</Link>
             </Menu.Item>
           )}
-          <Menu.Item key="3">
-            {!user && <Link to="/login">Login</Link>}
-            {user && user.email}
-          </Menu.Item>
-          {user && (
-            <Menu.Item key="4" style={{ marginLeft: 'auto' }}>
-              <Button
-                type="primary"
-                onClick={() => {
-                  logout();
-                }}
-              >
-                Logout
-              </Button>
+          {user ? (
+            <>
+              <Menu.Item key="4" style={{ marginLeft: 'auto' }}>
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  Logout
+                </Button>
+              </Menu.Item>
+            </>
+          ) : (
+            <Menu.Item key="3">
+              {!user && <Link to="/login">Login</Link>}
+              {user && user.email}
             </Menu.Item>
           )}
         </Menu>
