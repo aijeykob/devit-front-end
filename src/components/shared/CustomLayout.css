@@ -1,0 +1,31 @@
+.ant-layout-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ant-menu {
+    display: flex;
+    justify-content: flex-start;
+    flex: 1;
+}
+
+.ant-menu-item {
+    margin-left: 20px;
+}
+
+.ant-layout-content {
+    padding: 50px;
+    margin: 64px 0 0 0;
+}
+
+.site-layout-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ant-layout {
+    background-color: #f5f0f1;
+    min-height: 100vh;
+}

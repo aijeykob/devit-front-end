@@ -45,7 +45,7 @@ jwtInterceoptor.interceptors.response.use(
     } else {
       return Promise.reject(error);
     }
-  },
+  }
 );
 
 export default jwtInterceoptor;

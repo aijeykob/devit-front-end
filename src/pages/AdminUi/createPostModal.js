@@ -14,7 +14,7 @@ function CreatePostModal(props) {
       dispatch(
         createPost(values, () => {
           props.onSuccess();
-        }),
+        })
       );
     });
   };
@@ -31,7 +31,8 @@ function CreatePostModal(props) {
       onOk={handleOk}
       onCancel={handleCancel}
       okText="Create"
-      cancelText="Cancel">
+      cancelText="Cancel"
+    >
       <PostForm form={form} post={{}} errors={errors} />
     </Modal>
   );

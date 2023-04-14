@@ -16,7 +16,8 @@ function PostForm({ form, post, errors }) {
             required: true,
             message: 'Please enter a title',
           },
-        ]}>
+        ]}
+      >
         <Input />
       </Form.Item>
       <Form.Item
@@ -27,7 +28,8 @@ function PostForm({ form, post, errors }) {
             required: true,
             message: 'Please enter a description',
           },
-        ]}>
+        ]}
+      >
         <TextArea rows={4} />
       </Form.Item>
       <Form.Item
@@ -48,7 +50,8 @@ function PostForm({ form, post, errors }) {
               return Promise.reject('Please enter a valid URL');
             },
           },
-        ]}>
+        ]}
+      >
         <Input />
       </Form.Item>
       <Form.Item
@@ -61,7 +64,8 @@ function PostForm({ form, post, errors }) {
             required: true,
             message: 'Please enter a creator',
           },
-        ]}>
+        ]}
+      >
         <Input />
       </Form.Item>
       <Form.Item name="guid" label="Guid" validateStatus={errors?.guid ? 'error' : ''} help={errors?.guid}>

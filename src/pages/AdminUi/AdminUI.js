@@ -53,14 +53,14 @@ function AdminUI() {
         limit,
         ...searchInput,
         ...sortOrder,
-      }),
+      })
     );
   }, [page, limit, searchInput, dispatch]);
 
   const debouncedDispatch = useRef(
     debounce((data) => {
       dispatch(getPosts(data));
-    }, 500),
+    }, 500)
   ).current;
 
   useEffect(() => {
@@ -89,9 +89,9 @@ function AdminUI() {
             limit,
             ...searchInput,
             ...sortOrder,
-          }),
+          })
         );
-      }),
+      })
     );
   };
 
@@ -105,7 +105,7 @@ function AdminUI() {
       };
       dispatch(getPosts(data));
     },
-    [dispatch, limit, searchInput, sortOrder],
+    [dispatch, limit, searchInput, sortOrder]
   );
 
   const handleTableChange = (pagination, filters, sorter) => {
@@ -120,7 +120,7 @@ function AdminUI() {
     dispatch(
       getPosts(data, () => {
         setLoading(false);
-      }),
+      })
     );
   };
 

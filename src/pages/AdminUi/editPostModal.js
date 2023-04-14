@@ -17,7 +17,7 @@ function EditPostModal(props) {
       dispatch(
         getPost(props.postId, (data) => {
           setPost(data);
-        }),
+        })
       );
     }
   }, [props.postId]);
@@ -44,7 +44,7 @@ function EditPostModal(props) {
         updatePost(data, () => {
           dispatch(editPostClearErrors());
           props.onSuccess();
-        }),
+        })
       );
     });
   };
@@ -62,7 +62,8 @@ function EditPostModal(props) {
       onOk={handleOk}
       onCancel={handleCancel}
       okText="Save"
-      cancelText="Cancel">
+      cancelText="Cancel"
+    >
       <PostForm form={form} post={post} errors={errors} />
     </Modal>
   );

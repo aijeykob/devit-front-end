@@ -24,14 +24,16 @@ function App() {
                 <ProtectedRoute accessBy="non-authenticated">
                   <Login />
                 </ProtectedRoute>
-              }></Route>
+              }
+            ></Route>
             <Route
               path="/admin-ui"
               element={
                 <ProtectedRoute accessBy="authenticated">
                   <AdminUI />
                 </ProtectedRoute>
-              }></Route>
+              }
+            ></Route>
           </Routes>
         </Layout>
       </AuthContextProvider>
