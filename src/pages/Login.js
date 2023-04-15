@@ -1,13 +1,18 @@
 import { useContext } from 'react';
 import { Col, Row, Form, Input, Button } from 'antd';
 import AuthContext from '../components/shared/AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
-    await login(values);
+    try {
+      await login(values);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (

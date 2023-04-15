@@ -21,10 +21,18 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const login = async (payload) => {
-    const apiResponse = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, payload);
-    localStorage.setItem('tokens', JSON.stringify(apiResponse.data));
-    setUser(jwt_decode(apiResponse.data.accessToken));
-    navigate('/');
+    try {
+      const apiResponse = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, payload);
+      localStorage.setItem('tokens', JSON.stringify(apiResponse.data));
+      setUser(jwt_decode(apiResponse.data.accessToken));
+      navigate('/');
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        throw new Error(error.response.data.message);
+      } else {
+        throw new Error('Error Login');
+      }
+    }
   };
   const logout = async () => {
     // invoke the logout API call, for our NestJS API no logout API
